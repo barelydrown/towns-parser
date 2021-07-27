@@ -1,1 +1,3 @@
-venv
+venv/
+*.
+town_url_parser.py

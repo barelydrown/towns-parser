@@ -1,11 +1,9 @@
-import json
-import re
-import time
-import datetime
-import random
-
 import requests
 from bs4 import BeautifulSoup
+
+import json
+import re
+import datetime
 
 HOST = 'https://gorodarus.ru/'
 HEADERS = {
@@ -95,17 +93,18 @@ def parse_all():
 
         main_dict[letter.title()] = towns_list
 
-        with open('towns_dict.json', 'w') as file1:
+        with open('data/towns_dict.json', 'w') as file1:
             json.dump(main_dict, file1, ensure_ascii=False, indent=4)
 
-        with open('towns_list.json', 'w') as file2:
+        with open('data/towns_list.json', 'w') as file2:
             json.dump(main_list, file2, ensure_ascii=False, indent=4)
 
         print(f'Добавлены все города на букву: {letter.upper()}')
     print(f'Всего городов: {counter}')
+
     end = datetime.datetime.now().strftime('%H:%M:%S')
-    print(start)
-    print(end)
+    print(f'Время начала: {start}')
+    print(f'Время окончания: {end}')
 
 parse_all()
 
@@ -134,7 +133,7 @@ def parse_ru():
 
         letter_list = []
 
-    with open('ru/ru_towns_dict.json', 'w', encoding='utf-8') as file:
+    with open('data/ru/ru_towns_dict.json', 'w', encoding='utf-8') as file:
         json.dump(main_dict, file, ensure_ascii=False, indent=4)
 
 def get_town_url(html):
